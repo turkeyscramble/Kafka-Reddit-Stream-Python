@@ -1,6 +1,5 @@
 from pushshift_py import PushshiftAPI
 from datetime import datetime
-import pandas as pd
 from time import sleep, time
 import threading
 import logging
@@ -17,7 +16,7 @@ api = PushshiftAPI()
 #Logging for Debug
 format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
-
+#Test Adding a new comment
 #CONFIGS
 #SubReddits which are names of the our topics
 subreddits = ['stocks', 'MachineLearning', 'AskReddit']
