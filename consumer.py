@@ -45,14 +45,14 @@ class StreamReddit:
             value_deserializer = lambda x : loads(x.decode('utf-8'))
         )
 
-        consumer.subscribe(['redditStream']) #redditStream -> name of created topic
+        consumer.subscribe(['MachineLearning']) #redditStream -> name of created topic
 
         # Print what is going to localhost:9092
         for message in consumer:
             print(message.value)
 
 #Name of object, ie self. rest are configurable params
-stream = StreamReddit("Name_Of_Object", comments = True, num_comments = "True")
+stream = StreamReddit("MachineLearning", comments = True, num_comments = "True")
 
 send_thread = threading.Thread(target = stream.send_data)
 send_thread.start()
