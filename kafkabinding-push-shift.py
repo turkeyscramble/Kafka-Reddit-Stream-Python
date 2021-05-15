@@ -24,7 +24,7 @@ format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
 #TODO: CONFIGS AND PARAMETERS
 #SubReddits which are names of the our topics
-subreddits = ['wallstreetbets']
+subreddits = ["wallstreetbets", "stocks", "askreddit", "politics"]
 #query for submissions and comments
 submission_query=['']
 comment_query=['']
