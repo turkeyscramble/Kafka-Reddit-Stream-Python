@@ -71,7 +71,7 @@ def get_comment_forest(subreddit):
         thread.join()
         e = time()
         #print for loop of append
-        print(f"Accumulated ${submission.num_comments} comments from: ${submission.subreddit} ${submission.title} Timelapse (if no data, no query match):")
+        print(f"Accumulated {submission.num_comments} comments from: {submission.subreddit} {submission.title} Timelapse (if no data, no query match):")
         print(e - s)
         print("\n")
 
