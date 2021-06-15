@@ -45,7 +45,7 @@ class StreamReddit:
             value_deserializer = lambda x : loads(x.decode('utf-8'))
         )
 
-        consumer.subscribe(['MachineLearning']) #redditStream -> name of created topic
+        consumer.subscribe(['AskReddit']) #redditStream -> name of created topic
 
         # Print what is going to localhost:9092
         for message in consumer:

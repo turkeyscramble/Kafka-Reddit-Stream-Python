@@ -24,7 +24,7 @@ format = "%(asctime)s: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO, datefmt="%H:%M:%S")
 #TODO: CONFIGS AND PARAMETERS
 #SubReddits which are names of the our topics
-subreddits = ['wallstreetbets']
+subreddits = ['AskReddit', 'MachineLearning', 'WallStreetBets']
 #query for submissions and comments
 submission_query=['']
 comment_query=['']
@@ -57,7 +57,7 @@ def get_comment_forest(subreddit):
     submission_gen = api.search_submissions(q=submission_query, aggs=submission_agg_data, after=start_epoch, subreddit=subreddit, sort=sort, size=submission_limit, filter=submission_filter, author=submission_author, num_comments=comment_minimum)
 
     #The lambda just means it will expect a value x, and that value will be json encoded
-    producer = KafkaProducer(bootstrap_servers=['localhost:9092'], value_serializer=lambda x: dumps(x).encode('utf-8'))
+    producer = KafkaProducer(bootstrap_servers=['127.0.1.1:9092'], value_serializer=lambda x: dumps(x).encode('utf-8'))
 
     #TODO: Why is this repeatedly printing the last submission when descending? And why does this not keep streaming while ascending, it stops? EDIT: PROBLEM COULD BE CAUSED BY MULTIPLE THREADS
     for submission in submission_gen:
@@ -92,8 +92,7 @@ def threaded_comments(submission, submission_comments, producer):
         # Is it better to send these individually, or add them to a dataframe, then send the dataframe?
         producer.send(submission.subreddit, value=data)
         write_to_file(data)
-        #For testing terminal output
-        print(data)
+
 
 
 def write_to_file(data):
